@@ -39,6 +39,7 @@ If you are using AM3, please cite the following reference:
    examples/simple_example
    code_overview.md
    processes_details.md
+   simulation_walkthrough.md
    examples/detailed_example
    running_with_docker.md
    running_from_cpp.md

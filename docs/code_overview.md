@@ -34,9 +34,14 @@ In contrast to the energy grid, the time step may be adjusted dynamically and is
 
 ## Source parameters
 
-AM3 pre-assumes homogeneous particle and magnetic fields.
+AM3 pre-assumes homogeneous particle distributions and magnetic fields. The source parameters can be printed out using `rp.PrintParams()`.
 
-
+- The *magnetic field* is set through `rp.B_co` [G]. If you change it during run-time, call `sim.Update_B()` to re-calculate the kernels for magnetic field - dependant processes such as synchrotron emission
+- For an expanding source, the *expansion timescale is set through `rp.t_expansion` [s].
+- The *escape timescale* is set through `rp.t_esc` [s]. For each particle species, the escape time can be adjusted to a fraction of this, using the pattern
+    > rp.FRAC\_esc\_ + \${Internal name} 
+    Where the internal names are specified below. Important: Neutrinos, muons and pions are treated collectively, using `rp.FRAC_esc_HadNU`, `rp.FRAC_esc_HadMu` and `rp.FRAC_esc_HadPi`, respectively.
+    
 ## Particle species
 
 The code calculates the time-dependent evolution of the following species:
@@ -86,13 +91,13 @@ Access is implemented through the IO class (with corresponding object io):
 
     The process abbreviations are introduced [below](#physics-processes), in addition primary (injected) electrons have the process abbreviation 'in'. 
     \${sy/ic/syic} specifies whether the photons are due to [synchrotron/inverse Compton/synchrotron and inverse Compton radiation] of the leptons.
-    Thus, the command finally may read for example `io.Edn\_dE\_LepG\_bhsy()` or `io.Edn\_dE\_LepG\_insy()`. \
+    Thus, the command finally may read for example `io.Edn_dE_LepG_bhsy()` or `io.Edn_dE_LepG_insy()`. \
     Synchrotron and inverse Compton radiation from pions, muons and protons are accessed through
 
     > io.Edn\_dE\_LepG\_ + \${particle abbreviation} + \${sy/ic/syic}
 
-    Here, the particle abbreviations are 'pi' for pions, 'mu' for muons and 'p' for protons, yielding for example `io.Edn\_dE\_LepG\_psy()` for proton synchrotron radiation. \ 
-    Finally, Photons from $\pi^0$ decays are accessed through  `io.Edn\_dE\_LepG\_pi0()`.
+    Here, the particle abbreviations are 'pi' for pions, 'mu' for muons and 'p' for protons, yielding for example `io.Edn_dE_LepG_psy()` for proton synchrotron radiation. \ 
+    Finally, Photons from $\pi^0$ decays are accessed through  `io.Edn_dE_LepG_pi0()`.
 * Secondary leptons by generating process: Secondary lepton pairs may be accessed in a similar pattern as photons, thus
 
     > io.Edn\_dE\_LepEP\_ + \${Process abbreviation}
@@ -118,6 +123,9 @@ The following physics processes are included:
 
 **Notes**: (1) Due to their short lifetime, neutral pions are assumed to decay instantaneously. For photo-pion production we hence don't list a source term for neutral pions but instead a photon source term. (2) Injection here refers to the build-in injection. Arbitrary injection is possible by passing arrays. 
 
+For details on the implementation of the different processes we point to [Gao et al - new paper placeholder].
+
+
 ### Accessing timescales
 
 Particle timescales (in s) can be accessed through  
@@ -127,9 +135,9 @@ Particle timescales (in s) can be accessed through
 For example `io.t_LepE_sy()`. \
 In addition to the processes listed above it is possible to retrieve the acceleration timescale for electrons and protons. It is defined as 
 
-$$ t_\mathrm{acc} = \eta $$
+$$ t^{-1}_\mathrm{acc} (\gamma) = \frac{\eta e B}{m c \gamma} $$
 
-where the acceleration efficiency $\eta$ can be set through
+for a particle of Lorentz factor $\gamma$, mass $m$, electric charge $e$ in a magnetic field $B$. The acceleration efficiency $\eta$ can be set through `rp.eta_Bohm_Lep` (for leptons) and `rp.eta_Bohm_Had` (for hadrons). From this, code-internally also the maximum energy can be determined, balancing losses and acceleration, using `sim.Estimate_MaximumLeptonEnergy()` and `sim.Estimate_MaximumProtonEnergy()`.
 
 ### Injection of arbitrary distributions
 
@@ -142,7 +150,7 @@ The corresponding get-functions follow the pattern
 
 > io.Edn\_dEdt\_ext\_ + \${Particle internal name}
 
-For example `io.Edn_dEdt_ext_HadP()`. \
+For example `io.Edn_dEdt_ext_HadP()`.
 
 ### Internal injection 
 
@@ -151,3 +159,24 @@ The internal injection arrays are accessed through
 > io.Edn\_dEdt\_int\_ + \${Particle internal name}
 
 For example `io.Edn_dEdt_int_HadP()`. \
+Three different shapes can be selected for pre-implemented internal injection: 
+1. Mono-energetic injection: 
+    $$ Q(\gamma) = \begin{cases} C \, , $\gamma_\mathrm{min} < \gamma < \gamma_\mathrm{max} \\
+                                0 \, else
+                    \end{cases}
+    $$ 
+2. Power-law injection:
+    $$ Q(\gamma) = \begin{cases} C \gamma^{-p} \mathrm{exp}(A_\mathrm{cutoff}\gamma/ \gamma_\mathrm{max})\, , $\gamma_\mathrm{min} < \gamma  \\
+                                0 \, else
+                    \end{cases}
+    $$ 
+3. Power-law injection:
+    $$ Q(\gamma) = \begin{cases} C_1 \gamma^{-p_1} \, , $\gamma_\mathrm{min} < \gamma  < $\gamma_\mathrm{break}\\
+                    C_2 \gamma^{-p_2} \mathrm{exp}(A_\mathrm{cutoff} \gamma/ \gamma_\mathrm{max})\, , $\gamma_\mathrm{break} < \gamma  \\
+                                0 \, else
+                    \end{cases}
+    $$ 
+The parameters for the internal injection are stored in the `RunParams` class. For an object `rp` of that class, specify the total injection power density through `rp.p_in` [erg/cm$^3$s]. Then, `rp.FRACe` and `rp.FRACp` specify the fraction of that power density passed to electrons and protons. From this the normalisation constants are calculated. \
+The power-law indices and maximum/minimum/break energies are adjusted as follows:
+- Electrons: Use `rp.e_inj_Emin_eV`, `rp.e_inj_Emax_eV`, `rp.e_inj_Emin_eV` to specify the minimum, maximum and break energy (all in eV). Then `rp.e_inj_index` is the power-law index for power-law injection (or the low-energy index for broken power-law injection), `rp.e_inj_index_high` is the high-energy power-law index and `rp.e_inj_cutoff_steepness` the steepness of the exponential power-law cutoff ($A_\mathrm{cutoff}$ above).
+- Protons: Use `rp.p_inj_Emin_eV`, `rp.p_inj_Emax_eV`, `rp.p_inj_Emin_eV` to specify the minimum, maximum and break energy (all in eV). Then `rp.p_inj_index` is the power-law index for power-law injection (or the low-energy index for broken power-law injection), `rp.p_inj_index_high` is the high-energy power-law index and `rp.p_inj_cutoff_steepness` the steepness of the exponential power-law cutoff ($A_\mathrm{cutoff}$ above).
