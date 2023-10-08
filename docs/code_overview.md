@@ -178,7 +178,7 @@ Three different shapes can be selected for pre-implemented internal injection:
     0 & \text{else} \end{cases} 
     $$ 
 
-3. Power-law injection:
+3. Broken power-law injection:
 
     $$ 
     Q(\gamma) = 
@@ -190,5 +190,5 @@ Three different shapes can be selected for pre-implemented internal injection:
 
 The parameters for the internal injection are stored in the `RunParams` class. For an object `rp` of that class, specify the total injection power density through `rp.p_in` [erg/cm$^3$s]. Then, `rp.FRACe` and `rp.FRACp` specify the fraction of that power density passed to electrons and protons. From this the normalisation constants are calculated. \
 The power-law indices and maximum/minimum/break energies are adjusted as follows:
-- Electrons: Use `rp.e_inj_Emin_eV`, `rp.e_inj_Emax_eV`, `rp.e_inj_Emin_eV` to specify the minimum, maximum and break energy (all in eV). Then `rp.e_inj_index` is the power-law index for power-law injection (or the low-energy index for broken power-law injection), `rp.e_inj_index_high` is the high-energy power-law index and `rp.e_inj_cutoff_steepness` the steepness of the exponential power-law cutoff ($A_\mathrm{cutoff}$ above).
-- Protons: Use `rp.p_inj_Emin_eV`, `rp.p_inj_Emax_eV`, `rp.p_inj_Emin_eV` to specify the minimum, maximum and break energy (all in eV). Then `rp.p_inj_index` is the power-law index for power-law injection (or the low-energy index for broken power-law injection), `rp.p_inj_index_high` is the high-energy power-law index and `rp.p_inj_cutoff_steepness` the steepness of the exponential power-law cutoff ($A_\mathrm{cutoff}$ above).
+- Electrons: Use `rp.e_inj_Emin_eV`, `rp.e_inj_Emax_eV`, `rp.e_inj_Ebreak_eV` to specify the minimum, maximum and break energy (all in eV). Then `rp.e_inj_index` is the power-law index $p$ for power-law injection (or the low-energy index $p_1$ for broken power-law injection), `rp.e_inj_index_high` is the high-energy power-law index $p_2$ and `rp.e_inj_cutoff_steepness` the steepness of the exponential power-law cutoff ($A_\mathrm{cutoff}$ above).
+- Protons: Use `rp.p_inj_Emin_eV`, `rp.p_inj_Emax_eV`, `rp.p_inj_Ebreak_eV` to specify the minimum, maximum and break energy (all in eV). Then `rp.p_inj_index` is the power-law index $p$ for power-law injection (or the low-energy index $p_1$ for broken power-law injection), `rp.p_inj_index_high` is the high-energy power-law index $p_2$ and `rp.p_inj_cutoff_steepness` the steepness of the exponential power-law cutoff ($A_\mathrm{cutoff}$ above).
