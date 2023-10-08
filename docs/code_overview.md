@@ -161,23 +161,33 @@ The internal injection arrays are accessed through
 For example `io.Edn_dEdt_int_HadP()`. \
 Three different shapes can be selected for pre-implemented internal injection: 
 1. Mono-energetic injection: 
+
     $$  
     Q (\gamma) = 
     \begin{cases} 
     C & \text{if} \gamma_\mathrm{min} < \gamma < \gamma_\mathrm{max} \\ 
     0  & \text{else} \end{cases} 
     $$ 
+
 2. Power-law injection:
+
     $$ 
     Q(\gamma) = 
     \begin{cases} 
     C \gamma^{-p} \mathrm{exp}(A_\mathrm{cutoff} \, \gamma/ \gamma_\mathrm{max}) & \text{if} \gamma_\mathrm{min} < \gamma  \\
-                                0 & \text{else}\end{cases} 
+    0 & \text{else} \end{cases} 
     $$ 
+
 3. Power-law injection:
-    $$ Q(\gamma) = \begin{cases} C_1 \gamma^{-p_1} & \text{if} \gamma_\mathrm{min} < \gamma  < \gamma_\mathrm{break}\\
-                    C_2 \gamma^{-p_2} \mathrm{exp}(A_\mathrm{cutoff} \, \gamma/ \gamma_\mathrm{max})& \text{if} \gamma_\mathrm{break} < \gamma  \\
-                                0 & \text{else} \end{cases} $$ 
+
+    $$ 
+    Q(\gamma) = 
+    \begin{cases} 
+    C_1 \gamma^{-p_1} & \text{if} \gamma_\mathrm{min} < \gamma  < \gamma_\mathrm{break}\\
+    C_2 \gamma^{-p_2} \mathrm{exp}(A_\mathrm{cutoff} \, \gamma/ \gamma_\mathrm{max}) & \text{if} \gamma_\mathrm{break} < \gamma  \\
+    0 & \text{else} \end{cases} 
+    $$ 
+
 The parameters for the internal injection are stored in the `RunParams` class. For an object `rp` of that class, specify the total injection power density through `rp.p_in` [erg/cm$^3$s]. Then, `rp.FRACe` and `rp.FRACp` specify the fraction of that power density passed to electrons and protons. From this the normalisation constants are calculated. \
 The power-law indices and maximum/minimum/break energies are adjusted as follows:
 - Electrons: Use `rp.e_inj_Emin_eV`, `rp.e_inj_Emax_eV`, `rp.e_inj_Emin_eV` to specify the minimum, maximum and break energy (all in eV). Then `rp.e_inj_index` is the power-law index for power-law injection (or the low-energy index for broken power-law injection), `rp.e_inj_index_high` is the high-energy power-law index and `rp.e_inj_cutoff_steepness` the steepness of the exponential power-law cutoff ($A_\mathrm{cutoff}$ above).
