@@ -16,9 +16,9 @@ In addition, `sim.SetHadronicSy` can be used to turn `sim.process_psy` = `sim.pr
 ### Inverse Compton
 
 - Electrons: `sim.process_eic` `sim.process_eicrad` `sim.process_eicrad_fast` `sim.eicrad_fast_n_photon_in` `sim.eicrad_fast_n_photon_out` `sim.eicrad_fast_photon_in_max` `sim.eicrad_fast_photon_out_min` `sim.process_eiccool` `sim.process_eic_photonLoss`
-- Protons: `sim.process_pic` `sim.process_picrad` `sim.process_piccool`
-- Muons: `sim.process_muic` `sim.process_muicrad` `sim.process_muiccool`
-- Pions: `sim.process_piic` `sim.process_piicrad` `sim.process_piiccool`
+- Protons: Use `sim.process_pic` to turn on/off all proton inverse Compton related processes. In detail, `sim.process_picrad` controls whether proton inverse Compton produces photons and `sim.process_piccool` whether protons cool due to inverse Compton scatterings.
+- Muons: Use `sim.process_muic` to turn on/off all muon inverse Compton related processes. In detail, `sim.process_muicrad` controls whether muon inverse Compton produces photons and `sim.process_muiccool` whether muons cool due to inverse Compton scatterings.
+- Pions: Use `sim.process_piic` to turn on/off all pion inverse Compton related processes. In detail, `sim.process_piicrad` controls whether pion inverse Compton produces photons and `sim.process_piiccool` whether pions cool due to inverse Compton scatterings.
 
 `sim.SetHadronicIC`
 
@@ -77,9 +77,9 @@ Injection:
 
 ## Miscallaneous
 
-- `sim.process_parse_sed`
-- `sim.process_hadronic`
-- `sim.process_mergePositronsIntoElectrons`
+- `sim.process_parse_sed` is used to switch on the tracking of leptons and photons by process they originate from.
+- `sim.process_hadronic` is a multiplicative switch that can switch off all hadronic processes.
+- `sim.process_mergePositronsIntoElectrons` merges positrons and electrons in a single population. As electron-positrion annihilation is not included, this does not yield different results for synchrotron and inverse Compton emission of these populations.
 - `sim.verbose`
 - `sim.profile_timing`  . `sim.get_timing()`
 - `sim.SetLepOptimizer` and `sim.SetHadOptimizer`
