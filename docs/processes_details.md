@@ -1,18 +1,17 @@
-# Physics processes details: List of switches
-
+# List of switches
 The flexibility of AM3 is implemented by *switches* which allow to turn on/off processes in much detail. Below we give a full list of all switches available, which are attributes of a `SimulationManager` instance `sim`. 
 Note that some are *multiplicative switches* that may be used to turn off all aspects of a certain process.
 
 ## Physics Processes
 
 ### Synchrotron
-- Electrons: `sim.process_esy`, `sim.process_esyrad`, `sim.process_esycool`, `sim.process_qsyn`
+- Electrons: Use `sim.process_esy` to turn on/off all electron synchrotron related processes. In detail, `sim.process_esyrad` controls whether electron synchrotron produces photons, `sim.process_esycool` whether electrons cool due to synchrotron and `sim.process_qsyn` is the switch for quantum synchrotron emission.
 - Photons: `sim.process_ssa`
-- Protons:`sim.process_psy` , `sim.process_psyrad`, `sim.process_psycool`
-- Muons: `sim.process_musy` , `sim.process_musyrad`, `sim.process_musycool`
-- Pions:`sim.process_pisy` , `sim.process_pisyrad`, `sim.process_pisycool`
+- Protons: Use `sim.process_psy` to turn on/off all proton synchrotron related processes. In detail, `sim.process_psyrad` controls whether proton synchrotron produces photons and  `sim.process_psycool` whether protons cool due to synchrotron emission.
+- Muons: Use `sim.process_musy` to turn on/off all muon synchrotron related processes. In detail, `sim.process_musyrad` controls whether muons synchrotron produces photons and `sim.process_musycool` whether muons cool due to synchrotron emission.
+- Pions: Use `sim.process_pisy` to turn on/off all muon synchrotron related processes. In detail,  `sim.process_pisyrad` controls whether muons synchrotron produces photons and `sim.process_pisycool` whether pions cool due to synchrotron emission.
 
-`sim.SetHadronicSy`
+In addition, `sim.SetHadronicSy` can be used to turn `sim.process_psy` = `sim.process_musy` = `sim.process_pisy` on or off.
 
 ### Inverse Compton
 
@@ -40,6 +39,9 @@ Note that some are *multiplicative switches* that may be used to turn off all as
 - `sim.bhrad_fast_proton_in_min`
 - `sim.bhrad_fast_photon_in_max`
 - `sim.process_bhcool`
+
+### Proton-Proton interaction
+
 
 ### $\gamma \gamma$-annihilation
 - `sim.process_pair`
