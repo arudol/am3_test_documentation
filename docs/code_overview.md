@@ -161,8 +161,7 @@ The internal injection arrays are accessed through
 For example `io.Edn_dEdt_int_HadP()`. \
 Three different shapes can be selected for pre-implemented internal injection: 
 1. Mono-energetic injection: 
-    $$ Q(\gamma) = \begin{cases} C \, , $\gamma_\mathrm{min} < \gamma < \gamma_\mathrm{max} \\
-                                0 \, else \end{cases} $$ 
+    $$ Q(\gamma) = \begin{cases} C \, , $\gamma_\mathrm{min} < \gamma < \gamma_\mathrm{max} \\ 0 \, else \end{cases} $$ 
 2. Power-law injection:
     $$ Q(\gamma) = \begin{cases} C \gamma^{-p} \mathrm{exp}(A_\mathrm{cutoff}\gamma/ \gamma_\mathrm{max})\, , $\gamma_\mathrm{min} < \gamma  \\
                                 0 \, else \end{cases} $$ 
