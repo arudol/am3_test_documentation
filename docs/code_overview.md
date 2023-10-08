@@ -159,13 +159,13 @@ The internal injection arrays are accessed through
 > io.Edn\_dEdt\_int\_ + \${Particle internal name}
 
 For example `io.Edn_dEdt_int_HadP()`. \
-Three different shapes can be selected for pre-implemented internal injection: 
+Three different shapes for the internal injection (as a function of particle Lorentz factor $\gamma$) can be selected: 
 1. Mono-energetic injection: 
 
     $$  
     Q (\gamma) = 
     \begin{cases} 
-    C & \text{if} \gamma_\mathrm{min} < \gamma < \gamma_\mathrm{max} \\ 
+    C & \text{if } \gamma_\mathrm{min} < \gamma < \gamma_\mathrm{max} \\ 
     0  & \text{else} \end{cases} 
     $$ 
 
@@ -174,7 +174,7 @@ Three different shapes can be selected for pre-implemented internal injection:
     $$ 
     Q(\gamma) = 
     \begin{cases} 
-    C \gamma^{-p} \mathrm{exp}(A_\mathrm{cutoff} \, \gamma/ \gamma_\mathrm{max}) & \text{if} \gamma_\mathrm{min} < \gamma  \\
+    C \gamma^{-p} \mathrm{exp}(A_\mathrm{cutoff} \, \gamma/ \gamma_\mathrm{max}) & \text{if } \gamma_\mathrm{min} < \gamma  \\
     0 & \text{else} \end{cases} 
     $$ 
 
@@ -183,8 +183,8 @@ Three different shapes can be selected for pre-implemented internal injection:
     $$ 
     Q(\gamma) = 
     \begin{cases} 
-    C_1 \gamma^{-p_1} & \text{if} \gamma_\mathrm{min} < \gamma  < \gamma_\mathrm{break}\\
-    C_2 \gamma^{-p_2} \mathrm{exp}(A_\mathrm{cutoff} \, \gamma/ \gamma_\mathrm{max}) & \text{if} \gamma_\mathrm{break} < \gamma  \\
+    C_1 \gamma^{-p_1} & \text{if } \gamma_\mathrm{min} < \gamma  < \gamma_\mathrm{break}\\
+    C_2 \gamma^{-p_2} \mathrm{exp}(A_\mathrm{cutoff} \, \gamma/ \gamma_\mathrm{max}) & \text{if } \gamma_\mathrm{break} < \gamma  \\
     0 & \text{else} \end{cases} 
     $$ 
 
