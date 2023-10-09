@@ -9,7 +9,7 @@ Welcome to the AM3 (Astrophysical Multi-Messenger Modeling) Software!
 
 .. image:: ./media/logo.png
    :align: center
-   :scale: 50%
+   :scale: 30%
 
 |
 |
