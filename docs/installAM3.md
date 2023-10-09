@@ -14,7 +14,7 @@ The latter can be realised by creating a fixed conda environment
     - pybind11: install e.g. through conda `sudo conda install pybind11`
 
 2. g++
-    - gsl library: install e.g. through your standard package manager (apt/dnf/...) e.g. using apt: `sudo apt install libgsl-dev`
+    - gsl library: install through your standard package manager (apt/dnf/...) e.g. using apt: `sudo apt install libgsl-dev`
 
 3. make
 
@@ -29,13 +29,13 @@ The latter can be realised by creating a fixed conda environment
 
     ````
     
-2. Run `make` to compile and link AM3. This will create the library
+2. Run `make lib` to compile and link AM3. This will create the library
     in the relative folder  `libpython/lib/pybind_am3.so`
 
 
 ## Importing the library in python:
 
-In order to use the library add its path `$YOUR_PATH_TO_AM3/libpython/lib` (where `$YOUR_PATH_TO_AM3` should be replaced with the path where you store AM3) to your `PYTHONPATH`. This can be done by running in a terminal
+In order to use the library add its path `$YOUR_PATH_TO_AM3/libpython/lib` (where `$YOUR_PATH_TO_AM3` should be replaced with the directory where you store AM3) to your `PYTHONPATH`. This can be done by running in a terminal
 
 ```bash
 export PYTHONPATH="$YOUR_PATH_TO_AM3/libpython/lib"
