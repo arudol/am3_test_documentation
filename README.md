@@ -134,3 +134,4 @@ The directory `examples/examples_in_python` contains Jupyter notebooks each cont
  - [Rodrigues et al, ApJ 912 (2021)](https://doi.org/10.3847/1538-4357/abe87b)
  - [Rudolph et al, ApJL 944 (2023)](https://doi.org/10.3847/2041-8213/acb6d7)
  - [Rudolph et al, ApJ 950 (2023)](https://doi.org/10.3847/1538-4357/acc861)
+ - [Rudolph et al, arXiv 2309.08667 (2023)](https://arxiv.org/abs/2309.08667)
