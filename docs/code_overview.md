@@ -17,7 +17,7 @@ The user-interface module contains five classes:
   * 'AM3Arrays' holds the data arrays during the simulation. It does not have to be accessed, only initialisation is required. Objects of this class will be referred to as 'dat'.
   * 'IO' contains the input/output possibilities. Objects of this class will be referred to as 'io'.
 
-Note that internally all physics processes are implemented in single modules (i.e. .cc files), which however is only relevant on developer level.
+Internally all physics processes are implemented in single modules (contained in separate .cc files such as `BetheHeitler.cc`), while the solver methods are stored in `Solver.cc` (which also includes lepton, muon and pion inverse Compton and synchrotron radiation). This is however only relevant on developer level. 
 
 ## Grids
 

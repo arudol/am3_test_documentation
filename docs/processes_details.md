@@ -15,36 +15,32 @@ In addition, `sim.SetHadronicSy` can be used to turn `sim.process_psy` = `sim.pr
 
 ### Inverse Compton
 
-- Electrons: `sim.process_eic` `sim.process_eicrad` `sim.process_eicrad_fast` `sim.eicrad_fast_n_photon_in` `sim.eicrad_fast_n_photon_out` `sim.eicrad_fast_photon_in_max` `sim.eicrad_fast_photon_out_min` `sim.process_eiccool` `sim.process_eic_photonLoss`
+- Electrons: `sim.process_eic` `sim.process_eicrad` `sim.process_eiccool` `sim.process_eic_photonLoss`
+- Optimization of the electron inverse Compton. `sim.process_eicrad_fast` `sim.eicrad_fast_n_photon_in` `sim.eicrad_fast_n_photon_out` `sim.eicrad_fast_photon_in_max` `sim.eicrad_fast_photon_out_min` 
 - Protons: Use `sim.process_pic` to turn on/off all proton inverse Compton related processes. In detail, `sim.process_picrad` controls whether proton inverse Compton produces photons and `sim.process_piccool` whether protons cool due to inverse Compton scatterings.
 - Muons: Use `sim.process_muic` to turn on/off all muon inverse Compton related processes. In detail, `sim.process_muicrad` controls whether muon inverse Compton produces photons and `sim.process_muiccool` whether muons cool due to inverse Compton scatterings.
 - Pions: Use `sim.process_piic` to turn on/off all pion inverse Compton related processes. In detail, `sim.process_piicrad` controls whether pion inverse Compton produces photons and `sim.process_piiccool` whether pions cool due to inverse Compton scatterings.
 
-`sim.SetHadronicIC`
+In addition, `sim.SetHadronicIC` can be used to turn `sim.process_pic` = `sim.process_muic` = `sim.process_piic` on or off.
 
 ### Photo-pion production
-- `sim.process_pg`
+- The overall multiplicative switch is `sim.process_pg`, used to turn the process on/off.
 - `sim.process_pgrad`
-- `sim.process_pgrad_fast`
-- `sim.pgrad_fast_n_photon_in`
-- `sim.pgrad_fast_photon_in_max`
+- `sim.process_pgrad_fast`  `sim.pgrad_fast_n_photon_in`  `sim.pgrad_fast_photon_in_max`
 - `sim.process_pgcool`
 - `sim.process_pg_photonLoss`
 
 ### Bethe-Heitler (photo-pair production)
-- `sim.process_bh`
-- `sim.process_bhrad`
-- `sim.process_bhrad_fast`
-- `sim.bhrad_fast_n_el_out`
-- `sim.bhrad_fast_proton_in_min`
-- `sim.bhrad_fast_photon_in_max`
+- The overall multiplicative switch is `sim.process_bh`, used to turn the process on/off.
+- `sim.process_bhrad` 
+- `sim.process_bhrad_fast` `sim.bhrad_fast_n_el_out` `sim.bhrad_fast_proton_in_min` `sim.bhrad_fast_photon_in_max`
 - `sim.process_bhcool`
 
 ### Proton-Proton interaction
 
 
 ### $\gamma \gamma$-annihilation
-- `sim.process_pair`
+- The overall multiplicative switch is `sim.process_pair`, used to turn the process on/off.
 - `sim.process_pair_photonLoss`
 - `sim.process_pair_feedback`
 - `sim.process_pair_feedback_8bin`

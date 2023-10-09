@@ -30,7 +30,7 @@ The latter can be realised by creating a fixed conda environment
     ````
     
 2. Run `make` to compile and link AM3. This will create the library
-    in the relative folder  `libpython/lib/pybind_core.so`
+    in the relative folder  `libpython/lib/pybind_am3.so`
 
 
 ## Importing the library in python:
