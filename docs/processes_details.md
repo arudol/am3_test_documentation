@@ -26,14 +26,14 @@ In addition, `sim.SetHadronicIC` can be used to turn `sim.process_pic` = `sim.pr
 ### Photo-pion production
 - The overall multiplicative switch is `sim.process_pg`, used to turn the process on/off.
 - `sim.process_pgrad`
-- `sim.process_pgrad_fast`  `sim.pgrad_fast_n_photon_in`  `sim.pgrad_fast_photon_in_max`
+- Optimization: `sim.process_pgrad_fast`  `sim.pgrad_fast_n_photon_in`  `sim.pgrad_fast_photon_in_max`
 - `sim.process_pgcool`
 - `sim.process_pg_photonLoss`
 
 ### Bethe-Heitler (photo-pair production)
 - The overall multiplicative switch is `sim.process_bh`, used to turn the process on/off.
 - `sim.process_bhrad` 
-- `sim.process_bhrad_fast` `sim.bhrad_fast_n_el_out` `sim.bhrad_fast_proton_in_min` `sim.bhrad_fast_photon_in_max`
+- Optimization: `sim.process_bhrad_fast` `sim.bhrad_fast_n_el_out` `sim.bhrad_fast_proton_in_min` `sim.bhrad_fast_photon_in_max`
 - `sim.process_bhcool`
 
 ### Proton-Proton interaction
@@ -43,10 +43,10 @@ In addition, `sim.SetHadronicIC` can be used to turn `sim.process_pic` = `sim.pr
 - The overall multiplicative switch is `sim.process_pair`, used to turn the process on/off.
 - `sim.process_pair_photonLoss`
 - `sim.process_pair_feedback`
-- `sim.process_pair_feedback_8bin`
+- Optimization: `sim.process_pair_feedback_8bin`
 
 ### Secondary decay
-- `sim.process_sec_decay`
+- Use `sim.process_sec_decay` to turn on/off all secondary decay processes.
 - `sim.process_pi_decay`
 - `sim.process_mu_decay`
 
