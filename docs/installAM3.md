@@ -14,7 +14,7 @@ The latter can be realised by creating a fixed conda environment
     - pybind11: install e.g. through conda `sudo conda install pybind11`
 
 2. g++
-    - gsl library: install e.g. through your standard package manager (apt/dnf/...) using `sudo apt install libgsl-dev`
+    - gsl library: install e.g. through your standard package manager (apt/dnf/...) e.g. using apt: `sudo apt install libgsl-dev`
 
 3. make
 
@@ -35,5 +35,15 @@ The latter can be realised by creating a fixed conda environment
 
 ## Importing the library in python:
 
-In order to use the library add its path ``AM3/libpython/lib`` your `PYTHONPATH` or
-append it at the beginning of your program.
+In order to use the library add its path `$YOUR_PATH_TO_AM3/libpython/lib` (where `$YOUR_PATH_TO_AM3` should be replaced with the path where you store AM3) to your `PYTHONPATH`. This can be done by running in a terminal
+
+```bash
+export PYTHONPATH="$YOUR_PATH_TO_AM3/libpython/lib"
+```
+To add it *permanently* to you python path, adding the above line to the end of your `~/.bashrc` file (if you are on linux and using bash), or to the end of your `~/.bash_profile` (if you ar on OS). \
+Alternatively, you can simply link to it during your python run, by adding
+
+```python
+import sys
+sys.path.append($YOUR_PATH_TO_AM3/libpython/lib)
+```
